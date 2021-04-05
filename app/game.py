@@ -64,5 +64,5 @@ if __name__ == "__main__":
         print("You won")
     elif winner == c:
         print("Computer won")
-    elif winner == NONE:
+    elif winner == None:
         print("You tied with the computer")
