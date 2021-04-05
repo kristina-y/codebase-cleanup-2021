@@ -14,6 +14,7 @@ def determine_winner(choice1, choice2):
         determine_winner(rock, paper)
         determine_winner(scissors, rock)
     """
+    # This strategy was adapted from Professor Rossetti's in-class walk-through
     winners = {
         "rock":{
             "rock": None,
