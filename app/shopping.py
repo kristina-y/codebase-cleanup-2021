@@ -18,10 +18,14 @@ def format_usd(my_price):
 
 def lookup_product(product_id, all_products):
     """
+    Looks up the product ID entered by the user to ensure that it is in the product list
+
     Params:
         product_id (str) like "8"
         all_products (list of dict) each dict should have "id", "name", "department", "aisle", and "price" attributes
 
+    Example:
+        lookup_product(8, products)
     """
     matching_products = [p for p in all_products if str(p["id"]) == str(product_id)]
     if any(matching_products):
