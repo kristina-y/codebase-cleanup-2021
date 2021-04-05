@@ -26,18 +26,8 @@ print("COMPUTER CHOICE:", c)
 if u == c:
     print("It's a tie!")
 
-elif u == "rock" and c == "paper":
-    print("The computer wins")
-elif u == "rock" and c == "scissors":
-    print("The user wins")
-
-elif u == "paper" and c == "rock":
+elif (u == "rock" and c == "paper") or (u == "paper" and c == "scissors") or (u == "scissors" and c == "rock"):
     print("The computer wins")
 
-elif u == "paper" and c == "scissors":
-    print("The user wins")
-
-elif u == "scissors" and c == "rock":
-    print("The computer wins")
-elif u == "scissors" and c == "paper":
+elif (u == "rock" and c == "scissors") or (u == "paper" and c == "rock") or (u == "scissors" and c == "paper"):
     print("The user wins")
