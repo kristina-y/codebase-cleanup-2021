@@ -61,29 +61,31 @@ if __name__ == "__main__":
             else:
                 print("OOPS, Couldn't find that product. Please try again.")
 
-    checkout_at = datetime.now()
+    now = datetime.now()
 
     subtotal = sum([float(p["price"]) for p in selected_products])
+    tax = subtotal * 0.0875
+
 
     # PRINT RECEIPT
 
     print("---------")
-    print("CHECKOUT AT: " + str(checkout_at.strftime("%Y-%M-%d %H:%m:%S")))
+    print("CHECKOUT AT: " + now.strftime("%d/%m/%Y %I:%M:%S %p"))
     print("---------")
     for p in selected_products:
         print("SELECTED PRODUCT: " + p["name"] + "   " + format_usd(p["price"]))
 
     print("---------")
     print(f"SUBTOTAL: {format_usd(subtotal)}")
-    print(f"TAX: {format_usd(subtotal * 0.0875)}")
-    print(f"TOTAL: {format_usd((subtotal * 0.0875) + subtotal)}")
+    print(f"TAX: {format_usd(tax)}")
+    print(f"TOTAL: {format_usd((tax + subtotal))}")
     print("---------")
     print("THANK YOU! PLEASE COME AGAIN SOON!")
     print("---------")
 
     # WRITE RECEIPT TO FILE
 
-    receipt_id = checkout_at.strftime('%Y-%M-%d-%H-%m-%S')
+    receipt_id = now.strftime("%d-%m-%Y %I-%M-%S")
     receipt_filepath = os.path.join(os.path.dirname(__file__), "..", "receipts", f"{receipt_id}.txt")
 
     with open(receipt_filepath, "w") as receipt_file:
@@ -93,8 +95,8 @@ if __name__ == "__main__":
 
         receipt_file.write("\n---------")
         receipt_file.write(f"\nSUBTOTAL: {format_usd(subtotal)}")
-        receipt_file.write(f"\nTAX: {format_usd(subtotal * 0.875)}")
-        receipt_file.write(f"\nTOTAL: {format_usd(((subtotal * 0.875) + subtotal))}")
+        receipt_file.write(f"\nTAX: {format_usd(tax)}")
+        receipt_file.write(f"\nTOTAL: {format_usd((tax + subtotal))}")
         receipt_file.write("\n---------")
         receipt_file.write("\nTHANK YOU! PLEASE COME AGAIN SOON!")
         receipt_file.write("\n---------")
